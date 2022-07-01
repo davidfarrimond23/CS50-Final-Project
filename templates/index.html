@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<!-- QGIS resources -->
+        <link rel="stylesheet" href="../static/resources/ol.css">
+        <link rel="stylesheet" href="../static/resources/fontawesome-all.min.css">
+        <link rel="stylesheet" href="../static/resources/ol-layerswitcher.css">
+        <link rel="stylesheet" href="../static/resources/qgis2web.css">
+
+    <style>
+    .search-layer {
+      top: 65px;
+      left: .5em;
+    }
+    .ol-touch .search-layer {
+      top: 80px;
+    }
+    </style>
+        <style>
+        html, body {
+            background-color: #ffffff;
+        }
+        .ol-control button {
+            background-color: #f8f8f8 !important;
+            color: #000000 !important;
+            border-radius: 0px !important;
+        }
+        .ol-zoom, .geolocate, .gcd-gl-control .ol-control {
+            background-color: rgba(255,255,255,.4) !important;
+            padding: 3px !important;
+        }
+        .ol-scale-line {
+            background: none !important;
+        }
+        .ol-scale-line-inner {
+            border: 2px solid #f8f8f8 !important;
+            border-top: none !important;
+            background: rgba(255, 255, 255, 0.5) !important;
+            color: black !important;
+        }
+        </style>
+        <style>
+        #map {
+            width: 960px;
+            height: 840px;
+        }
+        </style>
+{% endblock %}
+
+{% block title %}
+    Your map!
+{% endblock %}
+
+{% block main %}
+    <h1 style = "padding-top:15px"> Welcome! </h1>
+    <div class = "row justify-content-center">
+        <div id="map" class="col-auto">
+            <div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+        </div>
+        <div id="blurb" class="col-auto" style="padding-top:15px">
+            <br>
+            <h3>Welcome to a cool new mapping Web App<br> (I hope)</h3><br>
+            <p>To use it, simply upload a file via <a href="/upload.html"><i>Upload</i></a> on the Nav Bar.<br><br>
+            Once the file is uploaded, navigate to <a href="/data.html"><i>Data</i></a> and select the uploaded file. <br>Or, try some of our already included files!<br><br>
+            Hit "Process"... and let the magic happen.
+            <br><br>You'll get a list of placenames. Once done, hit <b>Map it!</b> and be presented with a b-e-a-utiful map!<br><br>
+            This site uses the QGIS2WEB plugin for QGIS 3.0, courtesy of <a href="https://github.com/tomchadwin/qgis2web">Tom Chadwin</a><br><br>
+            For development and testing of the python script behind this app, I have utilised<br><a href="https://www.gutenberg.org/">Project Gutenberg's</a>
+            corpus of free online texts.<br><br>
+            Therefore, I recommend utilising texts from this site. This app currently only accepts .TXT files, but more are coming.<br><br>
+            The script is not, currently, perfect, and I will be adding an option<br>
+            to mark entries as a "false positive" soon.<br><br>
+            Thank you for using this app!</p>
+        </div>
+        <script src="static/resources/qgis2web_expressions.js"></script>
+        <script src="static/resources/polyfills.js"></script>
+        <script src="static/resources/functions.js"></script>
+        <script src="static/resources/ol.js"></script>
+        <script src="static/resources/ol-layerswitcher.js"></script>
+        <script src="static/layers/LowResShapefile_0.js"></script><script src="{{ entryfile }}"></script>
+        <script src="static/styles/LowResShapefile_0_style.js"></script><script src="static/styles/placenameslayer_1_style.js"></script>
+        <script src="static/layers/layers.js" type="text/javascript"></script>
+        <script src="static/resources/Autolinker.min.js"></script>
+        <script src="static/resources/qgis2web.js"></script>
+    </div>
+
+    </div>
+    </body>
+{% endblock %}

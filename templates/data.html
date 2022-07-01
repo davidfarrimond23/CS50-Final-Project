@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Data Processing!
+{% endblock %}
+
+{% block main %}
+<h1 style="padding-top:20px">Process a File!</h1>
+<form id = "0" action="/data" method="post" style="padding-bottom:15px;padding-top:10px">
+    <select name="filename">
+    {% for file in files %}
+    <option value="{{file}}">{{file}}</option>"
+    {% endfor %}
+    </select>
+    <input type="submit" value="Process!" id="submit">
+</form>
+<div style="display:none;height:720px" id="row1">
+<div class="row justify-content-center">
+    <img src = "static/mapicontop.png" id="loader2">
+</div>
+</div>
+{% block extra %}{% endblock %}
+<script>
+    var submitbutton = document.getElementById("submit");
+    var loader = document.getElementById("row1");
+    submitbutton.onclick = function(){
+        loader.style.display = "block"
+    }
+</script>
+{% endblock %}
